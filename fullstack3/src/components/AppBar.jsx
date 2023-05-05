@@ -1,6 +1,6 @@
-import { View, StyleSheet, Text, Pressable } from 'react-native';
-import Constants from 'expo-constants';
-import { Link } from 'react-router-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import Constants from 'expo-constants'
+import { Link } from 'react-router-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -14,15 +14,16 @@ const styles = StyleSheet.create({
   tabText: {
     subheading: 16,
     color: 'white'
-  },
-  // ...
-});
+  }
+})
 
 const AppBar = () => {
   return <View style={styles.container}>
-    <Link to="/signin"><Text style={styles.tabText}>Sign in</Text></Link>
-    <Link to="/"><Text style={styles.tabText}>Repositories</Text></Link>
-    </View>;
-};
+    <ScrollView style={styles.scrollView} horizontal>
+      <Link to="/signin"><Text style={styles.tabText}>Sign in</Text></Link>
+      <Link to="/"><Text style={styles.tabText}>Repositories</Text></Link>
+    </ScrollView>
+    </View>
+}
 
-export default AppBar;
+export default AppBar
