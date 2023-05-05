@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   return <View style={styles.container}>
     <ScrollView style={styles.scrollView} horizontal>
-      <Link to="/signin"><Text style={styles.tabText}>Sign in</Text></Link>
       <Link to="/"><Text style={styles.tabText}>Repositories</Text></Link>
+      <Link to="/signin"><Text style={styles.tabText}>Sign in</Text></Link>
     </ScrollView>
     </View>
 }
