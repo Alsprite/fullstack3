@@ -57,7 +57,7 @@ const SignIn = () => {
         {({ handleChange, handleSubmit, values, errors, touched }) => (
           <>
             <View style={styles.input}>
-            <TextInput
+            <TextInput style={theme.fonts}
               placeholder="Username"
               onChangeText={handleChange("username")}
               value={values.username}
@@ -67,7 +67,7 @@ const SignIn = () => {
             )}
             </View>
             <View style={styles.input}>
-            <TextInput
+            <TextInput style={theme.fonts}
               placeholder="Password"
               onChangeText={handleChange("password")}
               value={values.password}
@@ -78,7 +78,7 @@ const SignIn = () => {
               )}
             </View>
             <View style={styles.button}>
-                <TouchableOpacity onPress={handleSubmit}><Text>Sign in</Text></TouchableOpacity>
+                <TouchableOpacity onPress={handleSubmit}><Text style={theme.fonts}>Sign in</Text></TouchableOpacity>
             </View>
             
           </>
