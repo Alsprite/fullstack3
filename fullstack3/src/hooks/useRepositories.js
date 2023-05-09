@@ -2,17 +2,15 @@ import { useQuery } from '@apollo/client';
 
 import { GET_REPOSITORIES } from '../graphql/queries';
 
-const useRepositories = async (variables) => {
+const useRepositories = (variables) => {
   const { loading, error, data } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: 'cache-and-network',
-    variables
+    variables,
   });
-  if (loading) return { repositories: [], loading: true };
+  
+  const repositories = data?.repositories?.edges?.map(edge => edge.node);
 
-  if (error) return { repositories: [], loading: false };
-
-  console.log(data.repositories)
-  return { repositories: data.repositories, loading };
+  return { repositories, loading, error };
 };
 
 export default useRepositories;

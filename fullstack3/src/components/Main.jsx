@@ -21,7 +21,6 @@ const Main = () => {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       {/* <Text>Rate Repository Application</Text> */}
-      <RepositoryList />
     </View>
   );
 };
