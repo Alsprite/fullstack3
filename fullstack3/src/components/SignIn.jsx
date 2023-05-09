@@ -2,6 +2,7 @@ import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-nativ
 import { Formik } from 'formik';
 import theme from '../theme';
 import * as yup from 'yup';
+import { useSignIn } from '../hooks/useSignIn';
 
 const styles = StyleSheet.create({
     input: {
@@ -41,9 +42,11 @@ const initialValues = {
 }
 
 const SignIn = () => { 
+  const [signIn] = useSignIn()
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async ({username, password}) => {
+    console.log(username)
+    await signIn({username, password})
   };
 
   return (
