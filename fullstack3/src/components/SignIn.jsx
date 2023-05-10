@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import theme from '../theme';
 import * as yup from 'yup';
 import { useSignIn } from '../hooks/useSignIn';
+import { useNavigate } from "react-router-dom";
 
 const styles = StyleSheet.create({
     input: {
@@ -45,8 +46,8 @@ const SignIn = () => {
   const [signIn] = useSignIn()
 
   const onSubmit = async ({username, password}) => {
-    console.log(username)
     await signIn({username, password})
+    useNavigate('/')
   };
 
   return (
