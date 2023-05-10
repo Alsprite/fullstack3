@@ -13,8 +13,8 @@ export const useSignIn = () => {
     const { data } = await mutate({
       variables: { credentials: { username, password } },
     });
-
-    const token = await data.authorize.accessToken;
+    
+    const token = await data.authenticate.accessToken;
     await authStorage.setAccessToken(token);
     await apolloClient.resetStore();
   };

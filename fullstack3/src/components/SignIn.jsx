@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useSignIn } from '../hooks/useSignIn';
 import { useNavigate } from "react-router-dom";
 
+
 const styles = StyleSheet.create({
     input: {
         width: 400,
@@ -44,10 +45,10 @@ const initialValues = {
 
 const SignIn = () => { 
   const [signIn] = useSignIn()
-
+  const navigate = useNavigate()
   const onSubmit = async ({username, password}) => {
     await signIn({username, password})
-    useNavigate('/')
+    navigate('/')
   };
 
   return (
