@@ -9,7 +9,7 @@ const RepositoryItem = ({ item }) => {
     var fork1 = item.forksCount / 1000
     fork1 = fork1.toFixed(1)
     return (
-        <View>
+        <View testID="repositoryItem">
     <View style={styles.topContainer}>
         <View style={styles.avatarContainer}>
             <Image source={{uri: item.ownerAvatarUrl }} style={styles.avatar}/>
@@ -24,7 +24,7 @@ const RepositoryItem = ({ item }) => {
         {item.description}
     </Text>
     <View style={styles.languageContainer}>
-        <Text style={styles.languageText}>
+        <Text style={styles.languageText} testID="language">
             {item.language}
         </Text>
     </View>
