@@ -4,7 +4,7 @@ import theme from '../theme';
 import * as yup from 'yup';
 import { useSignIn } from '../hooks/useSignIn';
 import { useNavigate } from "react-router-dom";
-
+import { SignInForm } from './SignInForm';
 
 const styles = StyleSheet.create({
     input: {
@@ -42,6 +42,22 @@ const initialValues = {
     username: '',
     password: ''
 }
+
+export const SignInContainer = ({
+  initialValues,
+  onSubmit,
+  validationSchema,
+}) => {
+  return (
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+    >
+      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
+    </Formik>
+  );
+};
 
 const SignIn = () => { 
   const [signIn] = useSignIn()
