@@ -1,6 +1,5 @@
-import { Text, View } from 'react-native';
 import { render, screen } from '@testing-library/react-native';
-import RepositoryItem from '../../components/RepositoryItem'
+import { RepositoryListContainer } from '../../components/RepositoryListContainer';
 
 describe('RepositoryList', () => {
     describe('RepositoryListContainer', () => {
@@ -48,12 +47,12 @@ describe('RepositoryList', () => {
           ],
         };
   
-        const { queryAllByTestId } = render(
-            <RepositoryItem item={repositories}></RepositoryItem>
+        const { getAllByTestId } = render(
+            <RepositoryListContainer repositories={repositories}></RepositoryListContainer>
           );
-        
-        const language = queryAllByTestId('language');
 
+          const language = getAllByTestId('language')
+          // console.log(language)
         expect(language[0]).toHaveTextContent('TypeScript');
         expect(language[1]).toHaveTextContent('JavaScript');
       });
