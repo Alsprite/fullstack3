@@ -31,16 +31,19 @@ const AppBar = () => {
     setloggedIn(false)
   }
 
-  return <View style={styles.container}>
+  return (
+  <View style={styles.container}>
     <ScrollView style={styles.scrollView} horizontal>
       <Link to="/"><Text style={styles.tabText}>Repositories</Text></Link>
-      {loggedIn ? (
+      <Link to="/signin"><Text style={styles.tabText}>Sign in</Text></Link>
+      {/* {loggedIn ? (
         <Link to="/"><Text style={styles.tabText} onPress={() => signOut()}>Sign out</Text></Link>
       ) : (
         <Link to="/signin" onPress={() => setloggedIn(true)}><Text style={styles.tabText} >Sign in</Text></Link>
-      )}
+      )} */}
     </ScrollView>
     </View>
+  )
 }
 
 export default AppBar

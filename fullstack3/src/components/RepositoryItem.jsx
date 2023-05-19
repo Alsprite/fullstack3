@@ -14,6 +14,7 @@ const RepositoryItem = ({ repository }) => {
         reviewCount,
         ownerAvatarUrl,
       } = repository
+      console.log(repository.id)
     var star1 = stargazersCount / 1000
     star1 = star1.toFixed(1)
     var fork1 = forksCount / 1000
