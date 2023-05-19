@@ -14,7 +14,6 @@ const apolloClient = createApolloClient(authStorage);
 export default function App() {
   console.log(Constants.manifest);
   return (
-    <View>
       <NativeRouter>
       <ApolloProvider client={apolloClient}>
       <AuthStorageContext.Provider value={authStorage}>
@@ -23,6 +22,5 @@ export default function App() {
       </AuthStorageContext.Provider>
       </ApolloProvider>
       </NativeRouter>
-    </View>
   )
 }

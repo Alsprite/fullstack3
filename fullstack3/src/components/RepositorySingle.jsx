@@ -4,22 +4,31 @@ import useRepositories from '../hooks/useRepositories';
 
 const RepositorySingle = () => {
     const { repositories, loading } = useRepositories();
-    console.log(loading)
-    const { id } = useParams()
-    const repository = repositories.find(repo => String(repo.id) === id)
-    console.log("balls")
+    const { id } = useParams();
+    console.log(repositories)
+    const repository = repositories.find(repo => String(repo.id) === id);
+    
 
     if (loading) {
         return (
-            <View>
-                <Text>balls</Text>
-            </View>
-        )
-    }
-
-    return (
+          <View>
+            <Text>Loading...</Text>
+          </View>
+        );
+      }
+    
+      if (!repository) {
+        return (
+          <View>
+            <Text>Repository not found</Text>
+          </View>
+        );
+      }
+    
+      return (
         <View>
-            <Text>cock</Text>
+          <Text>{repository.name}</Text>
+          {/* Render the details of the repository */}
         </View>
     )
 }
