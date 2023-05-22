@@ -1,6 +1,8 @@
 import React from 'react'
 import { Text, View, Image, StyleSheet } from 'react-native'
 import { styles as repoStyles } from '../repositoryItemStyles.js';
+import { Link } from 'react-router-native'
+import RepositorySingle from './RepositorySingle.jsx';
 const styles = StyleSheet.create(repoStyles);
 
 const RepositoryItem = ({ repository }) => {
@@ -24,7 +26,7 @@ const RepositoryItem = ({ repository }) => {
         <View style={styles.avatarContainer}>
             <Image source={{uri: ownerAvatarUrl }} style={styles.avatar}/>
         </View>
-        <Text style={styles.nameText} fontWeight="bold" fontSize="subheading" numberOfLines={1}>
+        <Text style={styles.nameText}>
             {fullName}
         </Text>
     </View>
@@ -42,6 +44,9 @@ const RepositoryItem = ({ repository }) => {
     <Text>Forks: {fork1 + 'k'}</Text>
     <Text>Reviews: {reviewCount}</Text>
     <Text>Rating: {ratingAverage}</Text>
+    <View style={styles.languageContainer}>
+        <Link to={`/repo/${repository.id}`}><Text style={styles.buttonText}>Open repository</Text></Link>
+    </View>
   </View>
   </View>
     )

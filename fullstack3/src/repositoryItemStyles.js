@@ -77,9 +77,18 @@ export const styles = {
     paddingVertical: 3,
     paddingHorizontal: 6,
   },
+  buttonText: {
+    color: 'white',
+    backgroundColor: "red",
+    borderRadius: theme.roundness,
+    flexGrow: 0,
+    paddingVertical: 3,
+    paddingHorizontal: 6,
+  },
   githubContainer: {
     marginTop: 10,
     flexDirection: 'row',
+    width: "15%"
   },
   githubText: {
     color: 'white',
