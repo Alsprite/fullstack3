@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, FlatList } from 'react-native'
 import { useParams } from 'react-router-native';
 import useRepositories from '../hooks/useRepositories';
 import { styles as repoStyles } from '../repositoryItemStyles'
@@ -6,12 +6,8 @@ import * as Linking from 'expo-linking';
 
 const styles = StyleSheet.create(repoStyles);
 
-const RepositorySingle = () => {
-    const { repositories, loading } = useRepositories();
-    const { id } = useParams();
-    console.log(id)
-    const repository = repositories.find(repo => String(repo.id) === id);
-
+const RepositoryInfo = ({ repository, loading, id }) => {
+    
     var star1 = repository.stargazersCount / 1000
     star1 = star1.toFixed(1)
     var fork1 = repository.forksCount / 1000
@@ -67,6 +63,42 @@ const RepositorySingle = () => {
       </View>
   </View>
     )
+}
+
+const ReviewItem = ({ review }) => {
+  return (
+    <View style={{ backgroundColor: 'white', padding: 15 }}>
+      <View style={{ flexDirection: 'row', marginBottom: 15 }}>
+        <View style={styles.ratingContainer}>
+          <Text style={styles.ratingText}>{review.rating}</Text>
+        </View>
+
+        <View style={{ flexGrow: 1, flexShrink: 1 }}>
+          <Text style={styles.nameText}>{review.user.username}</Text>
+          <Text style={styles.dateText}>{review.createdAt.slice(0, 10)}</Text>
+          <Text>{review.text}</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+const RepositorySingle = () => {
+  const { repositories, loading } = useRepositories();
+  const { id } = useParams();
+
+  const repository = repositories.find(repo => String(repo.id) === id);
+  const reviews = repository && repository.reviews.edges.map((edge) => edge.node) || [];
+  console.log(reviews)
+
+  return (
+    <FlatList
+      data={reviews}
+      renderItem={({ item }) => <ReviewItem review={item} />}
+      keyExtractor={({ id }) => id}
+      ListHeaderComponent={() => <RepositoryInfo repository={repository} loading={loading} id={id} />}
+    />
+  )
 }
 
 export default RepositorySingle
