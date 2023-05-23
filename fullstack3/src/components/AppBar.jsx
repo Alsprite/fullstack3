@@ -39,8 +39,9 @@ const AppBar = () => {
       {loggedIn ? (
         <Link to="/"><Text style={styles.tabText} onPress={() => signOut()}>Sign out</Text></Link>
       ) : (
-        <Link to="/signin" onPress={() => setloggedIn(true)}><Text style={styles.tabText} >Sign in</Text></Link>
+        <Link to="/signin" onPress={() => setloggedIn(true)}><Text style={styles.tabText}>Sign in</Text></Link>
       )}
+      <Link to="/signup"><Text style={styles.tabText}>Sign up</Text></Link>
     </ScrollView>
     </View>
   )
