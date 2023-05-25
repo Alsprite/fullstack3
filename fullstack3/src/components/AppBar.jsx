@@ -33,9 +33,18 @@ const AppBar = () => {
 
   return (
   <View style={styles.container}>
-    <ScrollView style={styles.scrollView} horizontal>
-      <Link to="/"><Text style={styles.tabText}>Repositories</Text></Link>
-      <Link to="/review"><Text style={styles.tabText}>Create a review</Text></Link>
+    <ScrollView style={styles.scrollView} horizontal>  
+    <Link to="/"><Text style={styles.tabText}>Repositories</Text></Link>
+      {loggedIn ? (
+        <Link to="/review"><Text style={styles.tabText}>Create a review</Text></Link>
+      ) : (
+        <View></View>
+      )}
+      {loggedIn ? (
+        <Link to="/reviews/"><Text style={styles.tabText}>My reviews</Text></Link>
+      ) : (
+        <View></View>
+      )}
       {loggedIn ? (
         <Link to="/"><Text style={styles.tabText} onPress={() => signOut()}>Sign out</Text></Link>
       ) : (
