@@ -17,7 +17,10 @@ const RepositoryList = () => {
   const [visible, setVisible] = useState(false);
   const [orderBy, setOrderBy] = useState(null);
   const [searchKeyword, setSearchKeyword] = useState('');
-  const { repositories, loading } = useRepositories();
+  const [sortedRepositories, setSortedRepositories] = useState('')
+  const { repositories, loading, fetchMore } = useRepositories({
+    first: 4
+  });
 
   if (loading) {
     return (
@@ -26,6 +29,11 @@ const RepositoryList = () => {
       </View>
     );
   }
+
+  const onEndReach = () => {
+    console.log('end reached')
+    fetchMore();
+  };
 
   const orderEnums = {
     latest: { orderBy: 'CREATED_AT' },
@@ -117,7 +125,7 @@ const RepositoryList = () => {
           />
         </Menu>
       </View>
-      <RepositoryListContainer repositories={sortedAndFilteredRepositories} />
+      <RepositoryListContainer repositories={sortedAndFilteredRepositories} onEndReach={onEndReach} orderBy={orderBy} />
     </View>
   );
 };
