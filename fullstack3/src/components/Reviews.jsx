@@ -1,13 +1,15 @@
-import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
-import { useQuery } from '@apollo/client';
+import { Alert, Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_CURRENT_USER } from '../graphql/queries';
+import { DELETE_REVIEW } from '../graphql/mutation'
 import { styles as repoStyles } from '../repositoryItemStyles.js';
 import { Link } from 'react-router-native'
 
 const styles = StyleSheet.create(repoStyles);
 
 const Reviews = () => {
-    const { loading, error, data } = useQuery(GET_CURRENT_USER, {
+  const [deleteReview] = useMutation(DELETE_REVIEW);
+    const { loading, error, data, refetch } = useQuery(GET_CURRENT_USER, {
         variables: { includeReviews: true },
       });
       if (loading) {
@@ -39,6 +41,11 @@ const Reviews = () => {
     const reviews = me.reviews.edges.map((edge) => edge.node);
     reviews.sort((a, b) => b.rating - a.rating);
 
+    const handleDelete = async ({ id }) => {
+      const { data } = await deleteReview({ variables: { id } });
+      if (data.deleteReview) refetch();
+    };
+
     return (
         <View>
             {reviews.map((review) => (
@@ -53,7 +60,10 @@ const Reviews = () => {
                         <Text style={styles.dateText}>{review.createdAt.slice(0, 10)}</Text>
                         <Text>{review.text}</Text>
                     </View>
-                    <Link to={`/repo/${review.repositoryId}`}><Text style={styles.tabText}>View repository</Text></Link>
+                    <Link to={`/repo/${review.repositoryId}`}><Text style={styles.primaryButtonText}>View repository</Text></Link>
+                    <TouchableOpacity onPress={() => handleDelete(review)}>
+                <Text style={styles.warningButtonText}>Delete review</Text>
+              </TouchableOpacity>
                 </View>
             </View>
         </View>

@@ -95,7 +95,6 @@ const RepositorySingle = () => {
 
   const repository = repositories.find(repo => String(repo.id) === id);
   const reviews = repository && repository.reviews.edges.map((edge) => edge.node) || [];
-  console.log(reviews)
 
   return (
     <FlatList
