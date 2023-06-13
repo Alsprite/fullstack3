@@ -2,6 +2,7 @@ import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-nativ
 import { useQuery } from '@apollo/client';
 import { GET_CURRENT_USER } from '../graphql/queries';
 import { styles as repoStyles } from '../repositoryItemStyles.js';
+import { Link } from 'react-router-native'
 
 const styles = StyleSheet.create(repoStyles);
 
@@ -37,7 +38,7 @@ const Reviews = () => {
     
     const reviews = me.reviews.edges.map((edge) => edge.node);
     reviews.sort((a, b) => b.rating - a.rating);
-    
+
     return (
         <View>
             {reviews.map((review) => (
@@ -52,6 +53,7 @@ const Reviews = () => {
                         <Text style={styles.dateText}>{review.createdAt.slice(0, 10)}</Text>
                         <Text>{review.text}</Text>
                     </View>
+                    <Link to={`/repo/${review.repositoryId}`}><Text style={styles.tabText}>View repository</Text></Link>
                 </View>
             </View>
         </View>

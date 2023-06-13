@@ -87,6 +87,12 @@ const RepositorySingle = () => {
   const { repositories, loading } = useRepositories();
   const { id } = useParams();
 
+  if (loading) {
+    return (
+      <Text>loading...</Text>
+    )
+  }
+
   const repository = repositories.find(repo => String(repo.id) === id);
   const reviews = repository && repository.reviews.edges.map((edge) => edge.node) || [];
   console.log(reviews)
